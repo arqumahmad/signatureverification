@@ -1,8 +1,16 @@
 import os
 import pygame
 from tablet import Tablet
-
+import csv
+name = '20'
+newpath = r'database/'+name
+if not os.path.exists(newpath):
+    os.makedirs(newpath)
 pygame.init()
+filename = 'database/'+name+'/10.csv'
+open(filename, 'w').close()
+
+
 
 def main():
     """
@@ -20,7 +28,7 @@ def main():
 
     # Create our tablet object:
     tablet = Tablet(screen)
-
+    count = 0
     looping = True
     while looping:
         events = pygame.event.get()
@@ -41,12 +49,33 @@ def main():
 
         button, x, y, pressure = tabletData
 
-        
-            print tabletData
-            f1=open('temp.txt', 'a+')
+
+
+        if button==1:
+            #ratio = x/y
+
+            count = count +1
+            print count
+
+
+
+
+            f1=open(filename, 'a+')
+
             p=[]
-            p= str(tabletData)
-            f1.write(p + '\n')
+            p= str(pressure)
+
+            x_plot=[]
+            x_plot= str(x)
+
+            y_plot=[]
+            y_plot= str(y)
+            c=[]
+            c=str(count)
+        #    f1.writerow([c, x_plot, y_plot])
+
+##
+            f1.write(c +','+x_plot +','+y_plot + ','+ p+',,,'+'\n')
 
         #Turn our pressure into a reasonabliy sized radius value:
         radius = 5
@@ -57,8 +86,6 @@ def main():
             pygame.draw.circle(background, pygame.Color("blue"), (x,y), radius)
         elif button == 1 and pressure >512 and pressure <=1023:
             pygame.draw.circle(background, pygame.Color("red"), (x,y), radius)
-        elif button == 0 and x!=0:
-            pygame.draw.circle(background, pygame.Color("yellow"), (x,y), radius)
 
         # Draw our mouse pointer representation:
         pygame.draw.circle(overlay, pygame.Color("orange"), (x,y), 5)

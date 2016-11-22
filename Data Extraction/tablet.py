@@ -1,21 +1,3 @@
-"""
-http://www.akeric.com/python/tablet/tablet.py
-Eric Pavey - warpcat@sbcglobal.net - 2009-10-14
-http://www.akeric.com/blog
-Permission to use and modify given by author, as long as author is given credit.
-
-Allows for pressure sensitivity detection of tablets for use in PyGame.
-http://www.pygame.org
-
-Windows only, due to usage of the "Python Computer Graphics Kit" and it's hooks
-into wintab:
-http://cgkit.sourceforge.net
-http://cgkit.sourceforge.net/doc2/wintab.html
-
-Tested on WinXP, using Wacom Bamboo.
-See http://www.akeric.com/python/tablet/pressureTest.py for simple PyGame example usage.
-"""
-
 import os
 import random
 
@@ -29,19 +11,7 @@ class Tablet(object):
     """
 
     def __init__(self, screen, hwnd=None):
-        """
-        Build our Tablet object, which is Pygames interface into the world
-        of tablet pressure sensiviity.
-
-        screen : pygame.Surface :  The Pygame 'screen object created via:
-            pygame.display.set_mode().  Passed in to compensate for Pygame
-            window resizing.
-
-        hwnd : int : Optional.  The 'window handle' \ 'window id' for the given
-            Pygame window.  Since I don't know what I'm doing, I provide this
-            as a hook for someone that does.  If not provided, it creates a
-            random ID for use (default behavior).
-        """
+        
 
         # There is probably a much smarter way than this, but I havn't figured
         # it out yet....
